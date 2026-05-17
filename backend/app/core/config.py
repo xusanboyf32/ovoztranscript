@@ -6,6 +6,9 @@ from pydantic_settings import BaseSettings
 class Settings(BaseSettings):
     # Database
     DATABASE_URL: str
+    DB_NAME: str = "voicechataidb"
+    DB_USER: str = "voicechatai"
+    DB_PASSWORD: str = "voicechatai"
 
     # JWT
     SECRET_KEY: str
