@@ -23,6 +23,7 @@ from app.api.v1.secretary import router as secretary_router
 from app.api.v1.employee import router as employee_router
 
 from app.api.v1.profile import router as profile_router
+from uvicorn.middleware.proxy_headers import ProxyHeadersMiddleware
 
 from fastapi.staticfiles import StaticFiles
 
@@ -319,12 +320,16 @@ admin = Admin(
     title=f"{settings.APP_NAME} | Admin",
 )
 
+
+app.add_middleware(ProxyHeadersMiddleware, trusted_hosts=["127.0.0.1"])
+
 app.add_middleware(
     SessionMiddleware,
     secret_key=settings.ADMIN_SECRET_KEY,
     https_only=True,
     same_site="lax",
 )
+
 
 
 admin.add_view(UserAdmin)
