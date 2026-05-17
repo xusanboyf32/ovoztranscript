@@ -318,11 +318,14 @@ admin = Admin(
     base_url="/admin",
     title=f"{settings.APP_NAME} | Admin",
 )
+
 app.add_middleware(
     SessionMiddleware,
     secret_key=settings.ADMIN_SECRET_KEY,
-    https_only=False,  # True → False ga o'zgartiring
+    https_only=True,
+    same_site="lax",
 )
+
 
 admin.add_view(UserAdmin)
 admin.add_view(MeetingAdmin)
