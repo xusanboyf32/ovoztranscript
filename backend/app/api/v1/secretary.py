@@ -255,8 +255,7 @@ async def get_report(
                 "file_size":   a.file_size,
                 "mime_type":   a.mime_type,
                 "uploaded_at": a.uploaded_at,
-                "file_url": f"/media/{a.file_path.replace(chr(92), '/').lstrip('media/').lstrip('/')}",
-
+                "file_url": f"/media/{a.file_path.replace(chr(92), '/').replace('/app/media/', '')}",
             }
             for a in report.attachments
         ],
