@@ -255,7 +255,8 @@ async def get_report(
                 "file_size":   a.file_size,
                 "mime_type":   a.mime_type,
                 "uploaded_at": a.uploaded_at,
-                "file_url": f"http://localhost:8000/{a.file_path.replace(chr(92), '/')}",
+                "file_url": f"/media/{a.file_path.replace(chr(92), '/').lstrip('media/').lstrip('/')}",
+
             }
             for a in report.attachments
         ],
